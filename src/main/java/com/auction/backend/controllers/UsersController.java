@@ -3,6 +3,7 @@ package com.auction.backend.controllers;
 import com.auction.backend.data.dtos.UserDto;
 import com.auction.backend.data.models.User;
 import com.auction.backend.repositories.UserRepository;
+import com.auction.backend.services.UserService;
 import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,40 +18,31 @@ import java.util.UUID;
 public class UsersController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-    @GetMapping("{id}")
-    public ResponseEntity getById(@PathVariable UUID id){
-
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            return new ResponseEntity(new UserDto(user.get()), HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    @GetMapping("/{id}")
+    public ResponseEntity getById(@PathVariable UUID id) {
+        return userService.findById(id);
     }
 
     @GetMapping
-    public ResponseEntity getAll(){
-        Iterable<User> all = userRepository.findAll();
-        return new ResponseEntity(all, HttpStatus.OK);
+    public ResponseEntity getAll() {
+        return userService.findAll();
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody UserDto userDto){
-        // TODO: Add
-        return null;
+    public ResponseEntity create(@RequestBody UserDto userDto) {
+        return userService.postNewUser(userDto);
     }
 
-    @PutMapping
-    public ResponseEntity update(@RequestBody UserDto userDto){
-        // TODO: Update
-        return null;
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable UUID id, @RequestBody UserDto userDto) {
+        return userService.updateUser(id, userDto);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity delete(@PathVariable UUID id){
-        // TODO: Delete
-        return null;
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable UUID id) {
+        return userService.deleteUser(id);
     }
 
 }

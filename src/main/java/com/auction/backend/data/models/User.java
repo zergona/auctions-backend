@@ -1,5 +1,6 @@
 package com.auction.backend.data.models;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "a_user")
+@Data
 public class User {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -21,4 +23,11 @@ public class User {
     private UUID id;
     private String firstName;
     private String lastName;
+
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    public User(){
+    }
 }
