@@ -23,11 +23,18 @@ public class User {
     private UUID id;
     private String firstName;
     private String lastName;
+    private String email;
+    private String password;
+    private String auth;
 
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, String email, String password, String auth) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.auth = auth;
     }
     public User(){
     }
+
 }

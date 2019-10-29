@@ -12,9 +12,15 @@ public class UserDto {
 
     private String firstName;
     private String lastName;
+    private String email;
+    private String password;
+    private String auth;
 
     public UserDto(User user) {
         firstName = user.getFirstName();
         lastName = user.getLastName();
+        email = user.getEmail();
+        password = user.getPassword();
+        auth = user.getAuth();
     }
 }
