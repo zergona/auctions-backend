@@ -10,30 +10,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "a_user")
 @Data
 @NoArgsConstructor
-public class User {
+@Table(name="bid")
+public class Bid {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private String auth;
-
-    public User(String firstName, String lastName, String email, String password, String auth) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.auth = auth;
+    private UUID userId;
+    private UUID listingId;
+    private double amount;
+    private Date dateOfBid;
+    public Bid(UUID id, UUID userId, UUID listingId, double amount, Date dateOfBid){
+        this.id = id;
+        this.userId = userId;
+        this.listingId = listingId;
+        this.amount = amount;
+        this.dateOfBid = dateOfBid;
     }
 }

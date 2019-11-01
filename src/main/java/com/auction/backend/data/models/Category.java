@@ -15,25 +15,18 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "a_user")
 @Data
+@Table(name = "Category")
 @NoArgsConstructor
-public class User {
+public class Category {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private String auth;
+    private String name;
 
-    public User(String firstName, String lastName, String email, String password, String auth) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.auth = auth;
+    public Category(UUID id, String name){
+        this.id = id;
+        this.name = name;
     }
 }
